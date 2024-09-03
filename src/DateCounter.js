@@ -31,7 +31,6 @@ function DateCounter() {
 
   const dec = function () {
     dispatch({ type: "dec"});
-
   };
 
   const inc = function () {
