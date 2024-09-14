@@ -11,6 +11,9 @@ import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
 
+
+const SECS_PER_QUESTION = 30;
+
 const initialState = {
   questions: [],
   // loading, error, ready, active, finished
@@ -39,6 +42,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION
       };
     case "newAnswer":
       const question = state.questions.at(state.index);
@@ -81,6 +85,7 @@ function reducer(state, action) {
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? "finished" : state.status
       }
     default:
       throw new Error("Unknown action");
